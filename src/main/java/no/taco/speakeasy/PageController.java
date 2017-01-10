@@ -13,16 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by catoda on 01.11.2016.
  */
 
-//@ComponentScan({"no.taco.speakeasy.services"})
 @Controller
 class PageController {
 
     @Autowired
     private UserRepository repository;
-
-    public PageController() {
-        System.out.println("*** ==> Constructor  ");
-    }
 
     @RequestMapping("/")
     public String index()

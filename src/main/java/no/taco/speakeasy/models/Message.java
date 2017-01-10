@@ -11,14 +11,14 @@ import java.util.UUID;
 public class Message {
 
     @Id
-    public String id;
+    public UUID id;
 
     private User from;
     private User[] to;
     private String msg;
 
     public Message(User from, User[] to, String msg) {
-        this.id = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID();
         this.from = from;
         this.to = to;
         this.msg = msg;
