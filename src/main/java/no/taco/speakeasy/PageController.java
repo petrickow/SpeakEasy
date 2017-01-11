@@ -38,8 +38,11 @@ class PageController {
         }
 
         model.addAttribute("name", name);
-        model.addAttribute("user", repository.findByFirstName("Sara")[0]);//.findAll()
+        //model.addAttribute("user", repository.findByFirstName("Sara")[0]);//.findAll()
 
+        model.addAttribute("user", repository.findUniqueByFirstNameAndLastName("Cato", "Knu"));
+
+        model.addAttribute("special", repository.findUniqueByFirstNameAndLastName("Cato", "Dan"));
         System.out.println(model.toString());
         return "welcome";
     }
