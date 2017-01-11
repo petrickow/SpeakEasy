@@ -11,7 +11,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends MongoRepository<User, String> {
 
-    public User[] findByFirstName(String firstName);
+    public User[] findByFirstName(String firstName); // find all with a given firstName, does this work
+
+    public User findByFirstNameAndLastName(String firstName, String lastName);
+    public User findUniqueByFirstName(String firstName); // first?
 
 
 }
