@@ -1,15 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<link>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <title>Title</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="css/mini-default.css" rel="stylesheet" type="text/css" />
+    <body>
 
-    <link href="lib/node_modules/mini.css/dist/mini-default.css" rel="stylesheet" type="text/css" />
-<body>
-    <div class="container">
-        <h2>Hello</h2>
-    </div>
-</body>
+        <div th:include="fragments/header"></div>
+
+        <div class="container">
+            <h2>Hello</h2>
+            <p th:text="${model.intro}"></p>
+            <form action="#" th:action="@{/welcome}" method="get">
+                <input type="text" th:field="${model.name}" />
+                <button type="submit">Okidoki</button>
+            </form>
+        </div>
+    </body>
 </html>
