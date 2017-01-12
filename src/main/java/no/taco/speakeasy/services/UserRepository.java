@@ -16,5 +16,4 @@ public interface UserRepository extends MongoRepository<User, String> {
     public User findByFirstNameAndLastName(String firstName, String lastName);
     public User findUniqueByFirstName(String firstName); // first?
 
-
 }

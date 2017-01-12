@@ -20,13 +20,14 @@ class PageController {
     private UserRepository repository;
 
     @RequestMapping("/")
-    public String index()
+    public String index(Model model)
     {
+        model.addAttribute("model", new Index());
         return "index";
     }
 
     @RequestMapping("/welcome")
-    public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model)
+    public String greeting(@RequestParam(value="name", required=true) String name, Model model)
     {
         if (repository == null) {
             System.exit(7);
@@ -34,16 +35,14 @@ class PageController {
         if (repository.count() == 0) {
             System.out.println("Populate DB");
             repository.save(new User("Sara", "Knu"));
+            repository.save(new User("Sara", "Dan"));
             repository.save(new User("Cato", "Dan"));
         }
-
         model.addAttribute("name", name);
-        //model.addAttribute("user", repository.findByFirstName("Sara")[0]);//.findAll()
+        model.addAttribute("user", repository.findByFirstNameAndLastName("Cato", "Dan"));
+        model.addAttribute("special", repository.findUniqueByFirstName("Sara"));
 
-        model.addAttribute("user", repository.findUniqueByFirstNameAndLastName("Cato", "Knu"));
 
-        model.addAttribute("special", repository.findUniqueByFirstNameAndLastName("Cato", "Dan"));
-        System.out.println(model.toString());
         return "welcome";
     }
 }
