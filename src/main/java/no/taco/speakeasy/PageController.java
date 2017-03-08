@@ -19,7 +19,7 @@ class PageController {
     @Autowired
     private UserRepository repository;
 
-    @RequestMapping("/")
+    @RequestMapping(value = {"/", "/home"})
     public String index(Model model)
     {
         model.addAttribute("model", new Index());
@@ -27,22 +27,32 @@ class PageController {
     }
 
     @RequestMapping("/welcome")
-    public String greeting(@RequestParam(value="name", required=true) String name, Model model)
+    public String greeting(@RequestParam(value="name", defaultValue = "anonymous", required=true) String name, Model model)
     {
+        Chat c = new Chat();
+
         if (repository == null) {
-            System.exit(7);
+
+            c.errorMessage = "no repo, no info";
+            return "error";
         }
+
+        populateDB();
+        c.userName = name;
+
+        model.addAttribute("model", c);
+
+        return "welcome";
+    }
+
+    private void populateDB() {
         if (repository.count() == 0) {
             System.out.println("Populate DB");
             repository.save(new User("Sara", "Knu"));
             repository.save(new User("Sara", "Dan"));
             repository.save(new User("Cato", "Dan"));
+        } else {
+            System.out.println("All swell");
         }
-        model.addAttribute("name", name);
-        model.addAttribute("user", repository.findByFirstNameAndLastName("Cato", "Dan"));
-        model.addAttribute("special", repository.findUniqueByFirstName("Sara"));
-
-
-        return "welcome";
     }
 }

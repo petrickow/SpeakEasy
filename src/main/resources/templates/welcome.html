@@ -8,12 +8,10 @@
 
     <body>
 
-    <div class="container">
+        <div class="container">
             <h2 th:text="'Dashboard'" />
-            <div class="column" style="border: dotted; border-color: #558b2f">
-                <p th:text="'Hello, ' + ${name} + '!'" />
-                <p th:text="'Found: ' + ${user} + '!'" />
-                <p th:text="'special: ' + ${special}" />
+            <div class="column" >
+                <p th:text="'Hello, ' + ${model.userName} + '!'" />
                 <p>All done?</p>
             </div>
         </div>

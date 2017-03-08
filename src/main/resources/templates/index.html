@@ -10,11 +10,12 @@
         <div th:include="fragments/header"></div>
 
         <div class="container">
-            <h2>Hello</h2>
+            <h2 th:text="Test"></h2>
             <p><b th:text="${model.intro}"></b></p>
-            <form action="#" th:action="@{/welcome}" method="get">
+
+            <form th:action="@{/welcome}" method="get">
                 <input type="text" th:field="${model.name}" />
-                <button type="submit">Loki</button>
+                <button type="submit">Okidoki</button>
             </form>
         </div>
     </body>
